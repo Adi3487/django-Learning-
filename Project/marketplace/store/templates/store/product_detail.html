@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ product.name }}</title>
+</head>
+<body>
+    <h1>{{ product.name }}</h1>
+    <p>{{ product.description }}</p>
+    <p>Harga: Rp {{ product.price }}</p>
+    <p>Stok: {{ product.stock }}</p>
+    <a href="/">Kembali ke beranda</a>
+
+    {% if user.is_authenticated %}
+    <form action="{% url 'add_to_cart' product.pk %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Tambah ke Keranjang</button>
+    </form>
+{% else %}
+    <p><a href="/admin/login/">Login</a> untuk membeli</p>
+{% endif %}
+
+</body>
+</html>

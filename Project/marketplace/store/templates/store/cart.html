@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Keranjang</title>
+</head>
+<body>
+    <h1>Keranjang Anda</h1>
+    {% if cart.items.all %}
+        <ul>
+            {% for item in cart.items.all %}
+                <li>
+                    {{ item.product.name }} - {{ item.quantity }} pcs
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Keranjang kosong</p>
+    {% endif %}
+    <a href="/">Kembali ke beranda</a>
+    <ul>
+    {% for item in cart.items.all %}
+        <li>
+            {{ item.product.name }} - {{ item.quantity }} pcs
+            <a href="{% url 'remove_from_cart' item.id %}">Hapus</a>
+        </li>
+    {% endfor %}
+</ul>
+
+
+
+</body>
+</html>
